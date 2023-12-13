@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Color Contrast Tool</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="color-contrast-tool">
+      <h1>Color Contrast Tool</h1>
+
+      <!-- Inputs -->
+      <div class="input-container">
+        <div class="input-section">
+          <h3>Foreground</h3>
+          <label class="hidden" for="fgRGBA">Foreground Color (RGBA/Hex)</label>
+          <input
+            type="text"
+            id="fgRGBA"
+            name="fgRGBA"
+            onClick="this.select();"
+            value="#000000"
+          />
+          <label class="hidden" for="fgHex"
+            >Foreground: HTML native color picker</label
+          >
+          <input type="color" id="fgHex" name="fgHex" value="#000000" />
+        </div>
+
+        <!-- swap button -->
+        <button
+          class="swap-colors-button"
+          title="Swap demo color foreground and background"
+          onclick="swapColors()"
+        >
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+
+        <div class="input-section">
+          <h3>Background</h3>
+          <label class="hidden" for="bgRGBA">Background Color (RGBA/Hex)</label>
+          <input
+            type="text"
+            id="bgRGBA"
+            name="bgRGBA"
+            onClick="this.select();"
+            value="#FFB74D"
+          />
+          <label class="hidden" for="bgHex"
+            >Background: HTML native color picker</label
+          >
+          <input type="color" id="bgHex" name="bgHex" value="#FFB74D" />
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- Contrast Ratio & WCAG Pass/Fail -->
+      <h3>Contrast</h3>
+      <div class="color-ratio-container">
+        <div class="wcag-boxes test">
+          <h4>Ratio</h4>
+          <div id="color-ratio"></div>
+        </div>
+        <!-- WCAG Boxes -->
+        <div class="wcag-boxes-container">
+          <div class="wcag-boxes">
+            <h4>Normal Text</h4>
+            <p>18px and smaller</p>
+            <div id="aa-normal">
+              <span>AA</span>
+            </div>
+            <div id="aaa-normal">
+              <span>AAA</span>
+            </div>
+          </div>
+          <div class="wcag-boxes">
+            <h4>Large Text</h4>
+            <p>18.67px and bold, or 24px and larger</p>
+            <div id="aa-large">
+              <span>AA</span>
+            </div>
+            <div id="aaa-large">
+              <span>AAA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- Demo -->
+      <h3>Demo</h3>
+      <div class="demo-container">
+        <div id="demo-box">I never met a color I didn't like.</div>
+      </div>
+
+      <!-- End Tool Card Container -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-container">
+      <div class="footer-copyright">
+        &copy;
+        <span id="copyright-year"></span>
+        Vahala Designs
+      </div>
+    </footer>
+
+    <script src="index.js"></script>
+  </body>
+</html>

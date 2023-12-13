@@ -1,0 +1,267 @@
+/* Root CSS Variables
+================================ */
+
+/* HTML
+================================ */
+html,
+body {
+  background: #cfd8dc;
+  font-family: "Urbanist", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1rem;
+  font-weight: 400;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2 {
+  text-align: center;
+  display: block;
+  margin-top: 0;
+  font-weight: 500;
+}
+h1 {
+  font-size: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+h2 {
+  font-size: 1.375rem;
+}
+h3 {
+  margin-top: 0;
+}
+h3,
+h4 {
+  justify-content: flex-start;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+hr {
+  overflow: visible; /* For IE */
+  padding: 0;
+  border: none;
+  border-top: medium double #333;
+  color: #333;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 0;
+}
+hr:after {
+  font-family: "FontAwesome";
+  content: "\f5c3";
+  display: inline-block;
+  position: relative;
+  color: #333;
+  top: -0.7em;
+  font-size: 1.5em;
+  padding: 0 0.25em;
+  background: #ffffff;
+}
+
+/* Color Tool Card
+================================ */
+#color-contrast-tool {
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0.1875rem 0.1875rem -0.125rem,
+    rgba(0, 0, 0, 0.14) 0 0.1875rem 0.25rem 0,
+    rgba(0, 0, 0, 0.12) 0 0.0625rem 0.5rem 0;
+  border-radius: 0.5rem;
+  max-width: 600px;
+  margin: 2rem 1rem 15rem;
+  padding: 1rem;
+}
+@media screen and (min-width: 350px) {
+  #color-contrast-tool {
+    padding: 2rem;
+  }
+}
+@media screen and (min-width: 400px) {
+  #color-contrast-tool {
+    padding: 3rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  #color-contrast-tool {
+    margin: 2rem auto 15rem;
+  }
+}
+
+/* Demo
+================================ */
+.demo-container {
+  padding: 0;
+}
+#demo-box {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.375rem;
+}
+
+/* Inputs
+================================ */
+.input-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.input-container > .input-section {
+  display: flex;
+  flex-direction: column;
+}
+input[type="text"] {
+  margin-bottom: 0.25rem;
+}
+.input-container > .input-section > .input {
+  display: flex;
+}
+.input-container > .input-secion > label {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 0.25rem;
+}
+label.hidden {
+  display: none;
+}
+.input-container input[type="text"] {
+  padding: 0.75rem;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  text-align: center;
+  border: 0.125rem solid #ccc;
+  border-radius: 0.25rem;
+}
+.input-container input:hover {
+  border-color: #1e88e5;
+}
+.input-container input[type="color"] {
+  width: 100%;
+  border-radius: 0.25rem;
+  border: 0.125rem solid #ccc;
+}
+.input-container input[type="color"]:hover {
+  border-color: #1e88e5;
+}
+input[type="color"],
+button {
+  cursor: pointer;
+}
+button.swap-colors-button {
+  display: inline-block;
+  background-color: #1e88e5;
+  color: #ffffff;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0.1875rem 0.1875rem -0.125rem,
+    rgba(0, 0, 0, 0.14) 0 0.1875rem 0.25rem 0,
+    rgba(0, 0, 0, 0.12) 0 0.0625rem 0.5rem 0;
+  transition: all 0.2s ease-in-out;
+}
+button.swap-colors-button i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button.swap-colors-button:hover {
+  background-color: #1976d2;
+}
+button.swap-colors-button:active {
+  background-color: #0d47a1;
+  transform: rotate(180deg);
+}
+
+/* Color Ratio
+================================ */
+.color-ratio-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+#color-ratio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  background-color: #ffffff;
+  height: 60px;
+  width: 100%;
+  min-width: 150px;
+  margin: 1rem auto;
+  padding: 1rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  border: 0.125rem solid black;
+  border-radius: 0.25rem;
+}
+
+/* WCAG Boxes
+================================ */
+.wcag-boxes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.wcag-boxes > div {
+  display: inline-flex;
+  flex-flow: column wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  text-align: center;
+  background: #008811;
+  color: #ffffff;
+  padding: 1rem;
+  font-weight: 700;
+  border-radius: 0.25rem;
+  transition: background 0.5s;
+}
+.wcag-boxes > p {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+.wcag-boxes > div.fail {
+  background: #f44336;
+}
+.wcag-boxes span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Footer
+================================ */
+footer.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  padding: 2rem;
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: #000000;
+  background-color: #ffffff;
+  box-shadow: 0 -0.0625rem 0.3125rem rgba(0, 0, 0, 0.12);
+}
+@media (min-width: 600px) {
+  footer.footer-container {
+    justify-content: space-between;
+    gap: 1rem;
+  }
+}
+footer.footer-container .footer-copyright,
+.footer-link {
+  padding: 0.5rem;
+}
