@@ -3,6 +3,9 @@
 
 /* HTML
 ================================ */
+* {
+  box-sizing: border-box;
+}
 html,
 body {
   background: #cfd8dc;
@@ -10,23 +13,15 @@ body {
   -webkit-font-smoothing: antialiased;
   font-size: 1rem;
   font-weight: 400;
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-h1,
-h2 {
-  text-align: center;
-  display: block;
-  margin-top: 0;
-  font-weight: 500;
-}
 h1 {
+  display: block;
+  margin: 0 0 2.5rem;
   font-size: 1.75rem;
-  margin-bottom: 2.5rem;
-}
-h2 {
-  font-size: 1.375rem;
+  text-align: center;
+  font-weight: 500;
 }
 h3 {
   margin-top: 0;
@@ -40,6 +35,10 @@ h4 {
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+}
+input[type="color"],
+button {
+  cursor: pointer;
 }
 hr {
   overflow: visible; /* For IE */
@@ -71,9 +70,9 @@ hr:after {
     rgba(0, 0, 0, 0.14) 0 0.1875rem 0.25rem 0,
     rgba(0, 0, 0, 0.12) 0 0.0625rem 0.5rem 0;
   border-radius: 0.5rem;
-  max-width: 600px;
+  max-width: 700px;
   margin: 2rem 1rem 15rem;
-  padding: 1rem;
+  padding: 2rem 1rem 1rem;
 }
 @media screen and (min-width: 350px) {
   #color-contrast-tool {
@@ -85,56 +84,37 @@ hr:after {
     padding: 3rem;
   }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 732px) {
   #color-contrast-tool {
     margin: 2rem auto 15rem;
   }
-}
-
-/* Demo
-================================ */
-.demo-container {
-  padding: 0;
-}
-#demo-box {
-  padding: 1rem;
-  text-align: center;
-  font-size: 1.375rem;
 }
 
 /* Inputs
 ================================ */
 .input-container {
   display: flex;
-  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  flex-flow: row wrap;
   gap: 1rem;
 }
 .input-container > .input-section {
   display: flex;
-  flex-direction: column;
+  flex-flow: column;
+  width: 100%;
 }
-input[type="text"] {
-  margin-bottom: 0.25rem;
-}
-.input-container > .input-section > .input {
-  display: flex;
-}
-.input-container > .input-secion > label {
-  width: 2rem;
-  height: 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 2rem;
-  text-align: center;
-  border-radius: 0.25rem;
+@media screen and (min-width: 650px) {
+  .input-container > .input-section {
+    width: auto;
+  }
 }
 label.hidden {
   display: none;
 }
 .input-container input[type="text"] {
-  padding: 0.75rem;
+  margin-bottom: 0.25rem;
+  padding: 0.75rem 0.25rem;
   font-size: 1.25rem;
   line-height: 2rem;
   text-align: center;
@@ -148,16 +128,12 @@ label.hidden {
   width: 100%;
   border-radius: 0.25rem;
   border: 0.125rem solid #ccc;
+  padding: 0 0.125rem;
 }
 .input-container input[type="color"]:hover {
   border-color: #1e88e5;
 }
-input[type="color"],
-button {
-  cursor: pointer;
-}
 button.swap-colors-button {
-  display: inline-block;
   background-color: #1e88e5;
   color: #ffffff;
   padding: 1rem;
@@ -167,7 +143,6 @@ button.swap-colors-button {
   box-shadow: rgba(0, 0, 0, 0.2) 0 0.1875rem 0.1875rem -0.125rem,
     rgba(0, 0, 0, 0.14) 0 0.1875rem 0.25rem 0,
     rgba(0, 0, 0, 0.12) 0 0.0625rem 0.5rem 0;
-  transition: all 0.2s ease-in-out;
 }
 button.swap-colors-button i {
   display: flex;
@@ -179,6 +154,9 @@ button.swap-colors-button:hover {
 }
 button.swap-colors-button:active {
   background-color: #0d47a1;
+}
+button.swap-colors-button:active > i {
+  transition: all 0.15s ease-in-out;
   transform: rotate(180deg);
 }
 
@@ -238,6 +216,17 @@ button.swap-colors-button:active {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Demo
+================================ */
+.demo-container {
+  padding: 0;
+}
+#demo-box {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.375rem;
 }
 
 /* Footer
