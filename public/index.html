@@ -29,18 +29,25 @@
       <div class="input-container">
         <div class="input-section">
           <h3>Foreground</h3>
-          <label class="hidden" for="fgRGBA">Foreground Color (RGBA/Hex)</label>
+          <label class="hidden" for="fgTextInput"
+            >Foreground Color (RGBA/Hex)</label
+          >
           <input
             type="text"
-            id="fgRGBA"
-            name="fgRGBA"
+            id="fgTextInput"
+            name="fgTextInput"
             onClick="this.select();"
             value="#000000"
           />
-          <label class="hidden" for="fgHex"
+          <label class="hidden" for="fgColorInput"
             >Foreground: HTML native color picker</label
           >
-          <input type="color" id="fgHex" name="fgHex" value="#000000" />
+          <input
+            type="color"
+            id="fgColorInput"
+            name="fgColorInput"
+            value="#000000"
+          />
         </div>
 
         <!-- swap button -->
@@ -54,18 +61,25 @@
 
         <div class="input-section">
           <h3>Background</h3>
-          <label class="hidden" for="bgRGBA">Background Color (RGBA/Hex)</label>
+          <label class="hidden" for="bgTextInput"
+            >Background Color (RGBA/Hex)</label
+          >
           <input
             type="text"
-            id="bgRGBA"
-            name="bgRGBA"
+            id="bgTextInput"
+            name="bgTextInput"
             onClick="this.select();"
             value="#FFB74D"
           />
-          <label class="hidden" for="bgHex"
+          <label class="hidden" for="bgColorInput"
             >Background: HTML native color picker</label
           >
-          <input type="color" id="bgHex" name="bgHex" value="#FFB74D" />
+          <input
+            type="color"
+            id="bgColorInput"
+            name="bgColorInput"
+            value="#FFB74D"
+          />
         </div>
       </div>
 

@@ -1,35 +1,35 @@
 // Swap Colors
 function swapColors() {
-  let fgHex = document.getElementById("fgHex");
-  let bgHex = document.getElementById("bgHex");
-  let fgRGBA = document.getElementById("fgRGBA");
-  let bgRGBA = document.getElementById("bgRGBA");
-  let temp = fgHex.value;
-  fgHex.value = bgHex.value;
-  bgHex.value = temp;
-  temp = fgRGBA.value;
-  fgRGBA.value = bgRGBA.value;
-  bgRGBA.value = temp;
+  let fgColorInput = document.getElementById("fgColorInput");
+  let bgColorInput = document.getElementById("bgColorInput");
+  let fgTextInput = document.getElementById("fgTextInput");
+  let bgTextInput = document.getElementById("bgTextInput");
+  let temp = fgColorInput.value;
+  fgColorInput.value = bgColorInput.value;
+  bgColorInput.value = temp;
+  temp = fgTextInput.value;
+  fgTextInput.value = bgTextInput.value;
+  bgTextInput.value = temp;
   calculateContrast();
 }
 
 // Calculate Contrast
 function calculateContrast() {
-  let fgHex = document.getElementById("fgHex").value;
-  let bgHex = document.getElementById("bgHex").value;
-  let fgRGBA = document.getElementById("fgRGBA").value;
-  let bgRGBA = document.getElementById("bgRGBA").value;
+  let fgColorInput = document.getElementById("fgColorInput").value;
+  let bgColorInput = document.getElementById("bgColorInput").value;
+  let fgTextInput = document.getElementById("fgTextInput").value;
+  let bgTextInput = document.getElementById("bgTextInput").value;
   let colorRatioBox = document.getElementById("color-ratio");
-  let fgL = luminance(...parseColor(fgRGBA || fgHex));
-  let bgL = luminance(...parseColor(bgRGBA || bgHex));
+  let fgL = luminance(...parseColor(fgTextInput || fgColorInput));
+  let bgL = luminance(...parseColor(bgTextInput || bgColorInput));
   let contrastRatio = (Math.max(fgL, bgL) + 0.05) / (Math.min(fgL, bgL) + 0.05);
   let colorRatio = contrastRatio.toFixed(2);
   colorRatioBox.innerHTML = `${colorRatio} : 1`;
 
   // Set colors of the demobox
   let demoBox = document.querySelector("#demo-box");
-  demoBox.style.color = fgRGBA;
-  demoBox.style.backgroundColor = bgRGBA;
+  demoBox.style.color = fgTextInput;
+  demoBox.style.backgroundColor = bgTextInput;
 
   // Set WCAG boxes pass/fail
   document.querySelector("#aa-normal").className =
@@ -44,8 +44,13 @@ function calculateContrast() {
 // Regex to parse color
 function parseColor(input) {
   let m;
-  // Prepend '#' if not present
-  if (/^[a-f0-9]{6}$/i.test(input)) {
+  // Prepend '#' if not present and if it's a valid hex color
+  if (
+    !input.startsWith("#") &&
+    !input.startsWith("rgb") &&
+    !input.startsWith("rgba") &&
+    /^[a-f0-9]{6}$/i.test(input)
+  ) {
     input = "#" + input;
   }
   if ((m = input.match(/^#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})$/i))) {
@@ -70,49 +75,54 @@ function luminance(r, g, b) {
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 }
 
+// RGB to Hex
+function rgbToHex(rgb) {
+  let parts = rgb
+    .substring(rgb.indexOf("(") + 1, rgb.lastIndexOf(")"))
+    .split(/,\s*/);
+  let r = parseInt(parts[0]);
+  let g = parseInt(parts[1]);
+  let b = parseInt(parts[2]);
+  let hex =
+    "#" +
+    r.toString(16).padStart(2, "0") +
+    g.toString(16).padStart(2, "0") +
+    b.toString(16).padStart(2, "0");
+  return hex;
+}
+
 // Keep inputs in sync
-function syncInputs(hexInput, rgbaInput) {
-  hexInput.addEventListener("input", function () {
-    // Prepend '#' if not present
-    if (hexInput.value.charAt(0) !== "#" && !hexInput.value.startsWith("rgb")) {
-      hexInput.value = "#" + hexInput.value;
-    }
-    rgbaInput.value = hexInput.value;
-    calculateContrast();
-  });
-  rgbaInput.addEventListener("input", function () {
-    function rgbaToHex(rgba) {
-      let parts = rgba
-        .substring(rgba.indexOf("(") + 1, rgba.lastIndexOf(")"))
-        .split(/,\s*/);
-      let r = parseInt(parts[0]);
-      let g = parseInt(parts[1]);
-      let b = parseInt(parts[2]);
-      let hex =
-        "#" +
-        r.toString(16).padStart(2, "0") +
-        g.toString(16).padStart(2, "0") +
-        b.toString(16).padStart(2, "0");
-      return hex;
+function syncInputs(colorInput, textInput) {
+  textInput.addEventListener("input", function () {
+    // Prepend '#' if not present and if it's a valid hex color
+    if (
+      textInput.value.charAt(0) !== "#" &&
+      /^[0-9A-Fa-f]{6}$/i.test(textInput.value)
+    ) {
+      textInput.value = "#" + textInput.value;
     }
     try {
-      let colorArray = parseColor(rgbaInput.value);
-      // Check if the input is an RGBA value
-      if (rgbaInput.value.startsWith("rgb")) {
-        hexInput.value = rgbaToHex(rgbaInput.value); // Convert RGBA to hex
-      } else {
-        hexInput.value = rgbaInput.value; // Assign hex value directly
+      let colorArray = parseColor(textInput.value);
+      if (textInput.value.startsWith("rgb")) {
+        colorInput.value = rgbToHex(textInput.value); // Convert RGB to hex
+      } else if (/^#([0-9A-Fa-f]{3}){1,2}$/.test(textInput.value)) {
+        colorInput.value = textInput.value; // Assign hex value directly
       }
-      updateDemoColors(colorArray, colorArray); // Update the demo-box colors
+      calculateContrast();
     } catch (e) {
       // Invalid color, do not sync with color picker
     }
-    calculateContrast();
   });
 }
 
-syncInputs(document.getElementById("fgHex"), document.getElementById("fgRGBA"));
-syncInputs(document.getElementById("bgHex"), document.getElementById("bgRGBA"));
+syncInputs(
+  document.getElementById("fgColorInput"),
+  document.getElementById("fgTextInput")
+);
+syncInputs(
+  document.getElementById("bgColorInput"),
+  document.getElementById("bgTextInput")
+);
 window.addEventListener("load", calculateContrast);
 
 // Sets demo colors
