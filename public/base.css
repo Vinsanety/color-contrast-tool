@@ -238,6 +238,22 @@ button.swap-colors-button:active > i {
   font-size: 1.375rem;
 }
 
+/* WCAG Documentation Links
+================================ */
+.WCAG-documentation {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+.WCAG-documentation a {
+  color: #0d47a1;
+  text-decoration: none;
+  border-bottom: 0.125rem solid transparent;
+}
+.WCAG-documentation a:hover {
+  border-bottom: 0.125rem solid #0d47a1;
+}
+
 /* Footer
 ================================ */
 footer.footer-container {

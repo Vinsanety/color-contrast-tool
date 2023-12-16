@@ -22,13 +22,13 @@
     <div id="color-contrast-tool">
       <div class="color-contrast-tool-header">
         <h1>Color Contrast Tool</h1>
-        <p>WCAG contrast ratio compliance checker</p>
+        <!-- <p>WCAG contrast compliance checker</p> -->
       </div>
 
       <!-- Inputs -->
       <div class="input-container">
         <div class="input-section">
-          <h3>Foreground</h3>
+          <h3>Foreground <span style="font-size: 0.75rem">(hex, rgb)</span></h3>
           <label class="hidden" for="fgTextInput"
             >Foreground Color (RGBA/Hex)</label
           >
@@ -60,7 +60,7 @@
         </button>
 
         <div class="input-section">
-          <h3>Background</h3>
+          <h3>Background <span style="font-size: 0.75rem">(hex, rgb)</span></h3>
           <label class="hidden" for="bgTextInput"
             >Background Color (RGBA/Hex)</label
           >
@@ -123,6 +123,14 @@
       <h3>Demo</h3>
       <div class="demo-container">
         <div id="demo-box">I never met a color I didn't like.</div>
+      </div>
+
+      <div class="WCAG-documentation">
+        <a
+          href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
+          target="_blank"
+          >WCAG Contrast Success Criteria 1.4.3</a
+        >
       </div>
 
       <!-- End Tool Card Container -->
