@@ -44,7 +44,6 @@ function calculateContrast() {
 // Regex to parse color
 function parseColor(input) {
   let m;
-  // Prepend '#' if not present and if it's a valid hex color
   if (
     !input.startsWith("#") &&
     !input.startsWith("rgb") &&
@@ -94,7 +93,6 @@ function rgbToHex(rgb) {
 // Keep inputs in sync
 function syncInputs(colorInput, textInput) {
   textInput.addEventListener("input", function () {
-    // Prepend '#' if not present and if it's a valid hex color
     if (
       textInput.value.charAt(0) !== "#" &&
       /^[0-9A-Fa-f]{6}$/i.test(textInput.value)
@@ -102,16 +100,27 @@ function syncInputs(colorInput, textInput) {
       textInput.value = "#" + textInput.value;
     }
     try {
-      let colorArray = parseColor(textInput.value);
       if (textInput.value.startsWith("rgb")) {
-        colorInput.value = rgbToHex(textInput.value); // Convert RGB to hex
+        colorInput.value = rgbToHex(textInput.value);
       } else if (/^#([0-9A-Fa-f]{3}){1,2}$/.test(textInput.value)) {
-        colorInput.value = textInput.value; // Assign hex value directly
+        colorInput.value = textInput.value;
       }
       calculateContrast();
     } catch (e) {
       // Invalid color, do not sync with color picker
     }
+  });
+  colorInput.addEventListener("input", function () {
+    try {
+      let colorArray = parseColor(colorInput.value);
+      if (colorInput.value.startsWith("rgb")) {
+        textInput.value = rgbToHex(colorInput.value);
+      } else {
+        textInput.value = colorInput.value;
+      }
+      updateDemoColors(colorArray, colorArray);
+    } catch (e) {}
+    calculateContrast();
   });
 }
 
