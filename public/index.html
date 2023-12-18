@@ -69,7 +69,7 @@
             id="bgTextInput"
             name="bgTextInput"
             onClick="this.select();"
-            value="#FFB74D"
+            value="#B39DDB"
           />
           <label class="hidden" for="bgColorInput"
             >Background: HTML native color picker</label
@@ -78,7 +78,7 @@
             type="color"
             id="bgColorInput"
             name="bgColorInput"
-            value="#FFB74D"
+            value="#B39DDB"
           />
         </div>
       </div>
@@ -87,13 +87,38 @@
 
       <!-- Contrast Ratio & WCAG Pass/Fail -->
       <h3>WCAG Compliance</h3>
-      <div class="color-ratio-container">
-        <div class="wcag-boxes test">
-          <h4>Ratio</h4>
+      <div class="wcag-compliance-container">
+        <!-- WCAG Table -->
+        <table>
+          <thead>
+            <th>UI Element</th>
+            <th>AA</th>
+            <th>AAA</th>
+          </thead>
+          <tbody>
+            <tr class="wcag-table-row">
+              <td>Normal Text</td>
+              <td id="aa-normal"></td>
+              <td id="aaa-normal"></td>
+            </tr>
+            <tr class="wcag-table-row">
+              <td>Large Text</td>
+              <td id="aa-large"></td>
+              <td id="aaa-large"></td>
+            </tr>
+            <tr class="wcag-table-row">
+              <td>UI Components</td>
+              <td id="aa-component"></td>
+              <td id="aaa-component"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="color-ratio-container">
+          <h3>Contrast Ratio</h3>
           <div id="color-ratio"></div>
         </div>
         <!-- WCAG Boxes -->
-        <div class="wcag-boxes-container">
+        <!-- <div class="wcag-boxes-container">
           <div class="wcag-boxes">
             <h4>Normal Text</h4>
             <p>18px and smaller</p>
@@ -114,7 +139,7 @@
               <span>AAA</span>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <hr />
@@ -128,8 +153,8 @@
       <div class="WCAG-documentation">
         <a
           href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
-          target="_blank"
-          >WCAG Contrast Success Criteria 1.4.3</a
+          target="_blankgs"
+          >WCAG Contrast: Success Criteria 1.4.3</a
         >
       </div>
 

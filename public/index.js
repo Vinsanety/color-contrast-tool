@@ -33,12 +33,17 @@ function calculateContrast() {
 
   // Set WCAG boxes pass/fail
   document.querySelector("#aa-normal").className =
-    colorRatio > 4.5 ? "" : "fail";
-  document.querySelector("#aa-large").className = colorRatio > 3 ? "" : "fail";
+    colorRatio > 4.5 ? "pass" : "fail";
+  document.querySelector("#aa-large").className =
+    colorRatio > 3 ? "pass" : "fail";
   document.querySelector("#aaa-normal").className =
-    colorRatio > 7 ? "" : "fail";
+    colorRatio > 7 ? "pass" : "fail";
   document.querySelector("#aaa-large").className =
-    colorRatio > 4.5 ? "" : "fail";
+    colorRatio > 4.5 ? "pass" : "fail";
+  document.querySelector("#aa-component").className =
+    colorRatio > 3 ? "pass" : "fail";
+  document.querySelector("#aaa-component").className =
+    colorRatio > 3 ? "pass" : "fail";
 }
 
 // Regex to parse color
