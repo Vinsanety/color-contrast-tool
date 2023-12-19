@@ -49,16 +49,6 @@
             value="#000000"
           />
         </div>
-
-        <!-- swap button -->
-        <button
-          class="swap-colors-button"
-          title="Swap demo color foreground and background"
-          onclick="swapColors()"
-        >
-          <i class="fa-solid fa-arrows-rotate"></i>
-        </button>
-
         <div class="input-section">
           <h3>Background <span style="font-size: 0.75rem">(hex, rgb)</span></h3>
           <label class="hidden" for="bgTextInput"
@@ -117,37 +107,30 @@
           <h3>Contrast Ratio</h3>
           <div id="color-ratio"></div>
         </div>
-        <!-- WCAG Boxes -->
-        <!-- <div class="wcag-boxes-container">
-          <div class="wcag-boxes">
-            <h4>Normal Text</h4>
-            <p>18px and smaller</p>
-            <div id="aa-normal">
-              <span>AA</span>
-            </div>
-            <div id="aaa-normal">
-              <span>AAA</span>
-            </div>
-          </div>
-          <div class="wcag-boxes">
-            <h4>Large Text</h4>
-            <p>18.67px and bold, or 24px and larger</p>
-            <div id="aa-large">
-              <span>AA</span>
-            </div>
-            <div id="aaa-large">
-              <span>AAA</span>
-            </div>
-          </div>
-        </div> -->
       </div>
 
       <hr />
 
       <!-- Demo -->
-      <h3>Demo</h3>
-      <div class="demo-container">
-        <div id="demo-box">I never met a color I didn't like.</div>
+      <div class="demo-header">
+        <h3>Demo</h3>
+      </div>
+      <div id="demo-box">
+        <button
+          class="swap-colors-button"
+          title="Swap foreground and background color"
+          onclick="swapColors()"
+        >
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+        <div class="demo-container">
+          I never met a color I didn't like.
+          <div class="demo-box_ui-components">
+            <i class="fa-solid fa-toggle-on"></i>
+            <i class="fa-solid fa-circle-dot"></i>
+            <i class="fa-solid fa-square-check"></i>
+          </div>
+        </div>
       </div>
 
       <div class="WCAG-documentation">
