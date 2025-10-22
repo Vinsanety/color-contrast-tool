@@ -39,8 +39,16 @@
   <body>
     <div id="color-contrast-tool">
       <div class="color-contrast-tool-header">
-        <h1>Color Contrast Tool</h1>
-        <!-- <p>WCAG contrast compliance checker</p> -->
+        <h1>
+          <img
+            src="favicon/favicon.svg"
+            alt="Contrast Checker Logo"
+            height="50px"
+            width="50px"
+          />
+          Color Contrast
+        </h1>
+        <p>WCAG compliance tool</p>
       </div>
 
       <!-- Inputs -->
@@ -93,6 +101,51 @@
 
       <hr />
 
+      <!-- Contrast Ratio & WCAG Pass/Fail -->
+      <h3>
+        WCAG Compliance
+        <a
+          href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
+          target="_blank"
+          style="font-size: 0.875rem"
+        >
+          Success Criteria 1.4.3
+        </a>
+      </h3>
+      <div class="wcag-compliance-container">
+        <!-- WCAG Table -->
+        <table>
+          <thead>
+            <th></th>
+            <th>AA</th>
+            <th>AAA</th>
+          </thead>
+          <tbody>
+            <tr class="wcag-table-row">
+              <td>Normal Text</td>
+              <td id="aa-normal"></td>
+              <td id="aaa-normal"></td>
+            </tr>
+            <tr class="wcag-table-row">
+              <td>Large Text</td>
+              <td id="aa-large"></td>
+              <td id="aaa-large"></td>
+            </tr>
+            <tr class="wcag-table-row">
+              <td>UI Element</td>
+              <td id="aa-component"></td>
+              <td id="aaa-component"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="color-ratio-container">
+          <h3>Contrast Ratio</h3>
+          <div id="color-ratio"></div>
+        </div>
+      </div>
+
+      <hr />
+
       <!-- Demo -->
       <div class="demo-header">
         <h3>Demo</h3>
@@ -114,52 +167,6 @@
           </div>
         </div>
       </div>
-
-      <hr />
-
-      <!-- Contrast Ratio & WCAG Pass/Fail -->
-      <h3>WCAG Compliance</h3>
-      <div class="wcag-compliance-container">
-        <!-- WCAG Table -->
-        <table>
-          <thead>
-            <th>UI Element</th>
-            <th>AA</th>
-            <th>AAA</th>
-          </thead>
-          <tbody>
-            <tr class="wcag-table-row">
-              <td>Normal Text</td>
-              <td id="aa-normal"></td>
-              <td id="aaa-normal"></td>
-            </tr>
-            <tr class="wcag-table-row">
-              <td>Large Text</td>
-              <td id="aa-large"></td>
-              <td id="aaa-large"></td>
-            </tr>
-            <tr class="wcag-table-row">
-              <td>UI Components</td>
-              <td id="aa-component"></td>
-              <td id="aaa-component"></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="color-ratio-container">
-          <h3>Contrast Ratio</h3>
-          <div id="color-ratio"></div>
-        </div>
-      </div>
-
-      <div class="WCAG-documentation">
-        <a
-          href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
-          target="_blankgs"
-          >WCAG Contrast: Success Criteria 1.4.3</a
-        >
-      </div>
-
-      <!-- End Tool Card Container -->
     </div>
 
     <!-- Footer -->
