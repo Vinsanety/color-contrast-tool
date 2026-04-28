@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
@@ -23,159 +23,183 @@
 
     <!-- styles -->
     <link rel="stylesheet" href="base.css" />
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
   </head>
   <body>
-    <div id="color-contrast-tool">
-      <div class="color-contrast-tool-header">
-        <h1>
-          <img
-            src="favicon/favicon.svg"
-            alt="Contrast Checker Logo"
-            height="50px"
-            width="50px"
-          />
-          Color Contrast
-        </h1>
-        <p>WCAG compliance tool</p>
-      </div>
-
-      <!-- Inputs -->
-      <div class="input-container">
-        <div class="input-section">
-          <h3>Foreground <span style="font-size: 0.75rem">(hex, rgb)</span></h3>
-          <label class="hidden" for="fgTextInput"
-            >Foreground Color (RGBA/Hex)</label
-          >
-          <input
-            type="text"
-            id="fgTextInput"
-            name="fgTextInput"
-            onClick="this.select();"
-            value="#000000"
-          />
-          <label class="hidden" for="fgColorInput"
-            >Foreground: HTML native color picker</label
-          >
-          <input
-            type="color"
-            id="fgColorInput"
-            name="fgColorInput"
-            value="#000000"
-          />
+    <main id="color-contrast-tool">
+      <header class="hero-strip">
+        <div class="brand-stack">
+          <p class="eyebrow">A11Y ENGINE</p>
+          <h1>Contrast Lab</h1>
+          <!-- <p class="hero-copy">Audit, compare, and store contrast systems.</p> -->
         </div>
-        <div class="input-section">
-          <h3>Background <span style="font-size: 0.75rem">(hex, rgb)</span></h3>
-          <label class="hidden" for="bgTextInput"
-            >Background Color (RGBA/Hex)</label
+        <div class="hero-controls">
+          <button
+            type="button"
+            id="themeToggleButton"
+            class="button button-secondary"
           >
-          <input
-            type="text"
-            id="bgTextInput"
-            name="bgTextInput"
-            onClick="this.select();"
-            value="#B39DDB"
-          />
-          <label class="hidden" for="bgColorInput"
-            >Background: HTML native color picker</label
+            Toggle Dark
+          </button>
+        </div>
+      </header>
+
+      <section class="studio-grid">
+        <aside class="command-rail">
+          <section class="panel slab offset-one">
+            <h2>Input Command</h2>
+            <div class="field-stack">
+              <div class="field">
+                <label for="fgTextInput">Foreground</label>
+                <div class="input-row">
+                  <input
+                    type="text"
+                    id="fgTextInput"
+                    name="fgTextInput"
+                    value="#1D2939"
+                  />
+                  <input
+                    type="color"
+                    id="fgColorInput"
+                    name="fgColorInput"
+                    value="#1D2939"
+                  />
+                </div>
+                <p id="fgError" class="helper error" aria-live="polite"></p>
+              </div>
+              <div class="field">
+                <label for="bgTextInput">Background</label>
+                <div class="input-row">
+                  <input
+                    type="text"
+                    id="bgTextInput"
+                    name="bgTextInput"
+                    value="#F8FAFC"
+                  />
+                  <input
+                    type="color"
+                    id="bgColorInput"
+                    name="bgColorInput"
+                    value="#F8FAFC"
+                  />
+                </div>
+                <p id="bgError" class="helper error" aria-live="polite"></p>
+              </div>
+            </div>
+            <div class="button-row">
+              <button
+                type="button"
+                id="swapColorsButton"
+                class="button button-secondary"
+              >
+                Swap
+              </button>
+              <button type="button" id="savePairButton" class="button">
+                Save Pair
+              </button>
+            </div>
+            <p id="saveStatus" class="helper" aria-live="polite"></p>
+          </section>
+
+          <section class="panel slab ratio-billboard offset-two">
+            <p class="billboard-label">Contrast Ratio</p>
+            <p id="color-ratio" class="ratio">--</p>
+            <p class="wcag-link">
+              <a
+                href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WCAG 2.1 SC 1.4.3
+              </a>
+            </p>
+          </section>
+        </aside>
+
+        <section class="main-stage">
+          <section class="panel slab offset-three">
+            <h2>Compliance Board</h2>
+            <div id="statusGrid" class="matrix">
+              <div class="matrix-row">
+                <p>AA Normal Text</p>
+                <span id="aa-normal" class="pill">--</span>
+              </div>
+              <div class="matrix-row">
+                <p>AAA Normal Text</p>
+                <span id="aaa-normal" class="pill">--</span>
+              </div>
+              <div class="matrix-row">
+                <p>AA Large Text</p>
+                <span id="aa-large" class="pill">--</span>
+              </div>
+              <div class="matrix-row">
+                <p>AAA Large Text</p>
+                <span id="aaa-large" class="pill">--</span>
+              </div>
+              <div class="matrix-row">
+                <p>AA UI Components</p>
+                <span id="aa-component" class="pill">--</span>
+              </div>
+              <div class="matrix-row">
+                <p>AAA UI Components</p>
+                <span id="aaa-component" class="pill">--</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel slab offset-four">
+            <h2>Scenario Wall</h2>
+            <div id="demo-box" class="preview-shell">
+              <div class="preview-block">
+                <p class="preview-label">Body Content</p>
+                <h3>Readable interfaces are competitive advantages</h3>
+                <p>
+                  Teams with clearer contrast ship faster and reduce
+                  accessibility rework costs.
+                </p>
+              </div>
+              <div class="preview-block subtle">
+                <p class="preview-label">UI Controls</p>
+                <div class="alt-ui-toolbar">
+                  <span class="alt-ui-pill">Active</span>
+                  <span class="alt-ui-segment">Overview</span>
+                  <span class="alt-ui-segment">Settings</span>
+                </div>
+                <div class="alt-ui-input-wrap">
+                  <span class="alt-ui-input-icon">⌘K</span>
+                  <span class="alt-ui-input-text">Jump to command...</span>
+                </div>
+                <div class="alt-ui-switch-row">
+                  <span class="alt-ui-switch" aria-hidden="true"></span>
+                  <span class="alt-ui-switch-label">Enable autopilot</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel slab offset-five">
+            <h2>Closest Accessible Alternatives</h2>
+            <ul id="recommendations" class="recommendations"></ul>
+          </section>
+        </section>
+      </section>
+
+      <section class="panel slab saved-module offset-six">
+        <div class="saved-head">
+          <h2>Saved Pair Tickets</h2>
+          <button
+            type="button"
+            id="clearSavedButton"
+            class="button button-secondary button-small"
           >
-          <input
-            type="color"
-            id="bgColorInput"
-            name="bgColorInput"
-            value="#B39DDB"
-          />
+            Clear
+          </button>
         </div>
-      </div>
+        <ul id="savedPairsList" class="saved-list"></ul>
+      </section>
+    </main>
 
-      <hr />
-
-      <!-- Contrast Ratio & WCAG Pass/Fail -->
-      <h3>
-        WCAG Compliance
-        <a
-          href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
-          target="_blank"
-          style="font-size: 0.875rem"
-        >
-          Success Criteria 1.4.3
-        </a>
-      </h3>
-      <div class="wcag-compliance-container">
-        <!-- WCAG Table -->
-        <table>
-          <thead>
-            <th></th>
-            <th>AA</th>
-            <th>AAA</th>
-          </thead>
-          <tbody>
-            <tr class="wcag-table-row">
-              <td>Normal Text</td>
-              <td id="aa-normal"></td>
-              <td id="aaa-normal"></td>
-            </tr>
-            <tr class="wcag-table-row">
-              <td>Large Text</td>
-              <td id="aa-large"></td>
-              <td id="aaa-large"></td>
-            </tr>
-            <tr class="wcag-table-row">
-              <td>UI Element</td>
-              <td id="aa-component"></td>
-              <td id="aaa-component"></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="color-ratio-container">
-          <h3>Contrast Ratio</h3>
-          <div id="color-ratio"></div>
-        </div>
-      </div>
-
-      <hr />
-
-      <!-- Demo -->
-      <div class="demo-header">
-        <h3>Demo</h3>
-      </div>
-      <div id="demo-box">
-        <button
-          class="swap-colors-button"
-          title="Swap foreground and background color"
-          onclick="swapColors()"
-        >
-          <i class="fa-solid fa-arrows-rotate"></i>
-        </button>
-        <div class="demo-container">
-          I never met a color I didn't like.
-          <div class="demo-box_ui-components">
-            <i class="fa-solid fa-toggle-on"></i>
-            <i class="fa-solid fa-circle-dot"></i>
-            <i class="fa-solid fa-square-check"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer -->
     <footer class="footer-container">
-      <div class="footer-copyright">
-        &copy;
-        <span id="copyright-year"></span>
-        Vahala Designs
-      </div>
+      <p>&copy; <span id="copyright-year"></span> Vahala</p>
     </footer>
 
     <script src="index.js"></script>
