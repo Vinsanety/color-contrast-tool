@@ -328,29 +328,76 @@ button:focus-visible {
   color: var(--fail-text);
 }
 
-.preview-shell {
+#scenarioWall {
   --preview-body-fg: currentColor;
   --preview-body-bg: transparent;
   --preview-control-fg: currentColor;
   --preview-control-bg: transparent;
-  border: 2px solid var(--line);
-  background: var(--surface-muted);
-  padding: 0.72rem;
 }
 
-.preview-block {
-  border: 2px solid currentColor;
+.preview-inner-box {
+  border: 2px solid var(--line);
+  margin: 0;
+  background: var(--surface);
+}
+
+.preview-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-bottom: 2px solid var(--line);
+  padding: 0.35rem 0.45rem;
+  background: var(--surface-muted);
+}
+
+.window-dot {
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.window-title {
+  margin-left: 0.35rem;
+  font-size: 0.68rem;
+  font-family: Inter, "Segoe UI", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.preview-canvas {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+}
+
+@media (max-width: 780px) {
+  .preview-canvas {
+    grid-template-columns: 1fr;
+  }
+}
+
+.scenario-card {
+  border: 0;
   padding: 0.65rem;
 }
 
-.preview-shell > .preview-block:first-child {
+.scenario-reading {
   color: var(--preview-body-fg);
   background: var(--preview-body-bg);
-  border-color: var(--preview-body-fg);
+  border-right: 1px dashed currentColor;
 }
 
-.preview-block.subtle {
-  margin-top: 0.55rem;
+.scenario-controls {
+  color: var(--preview-control-fg);
+  background: var(--preview-control-bg);
+}
+
+@media (max-width: 780px) {
+  .scenario-reading {
+    border-right: 0;
+    border-bottom: 1px dashed currentColor;
+  }
 }
 
 .preview-label {
@@ -359,8 +406,8 @@ button:focus-visible {
   text-transform: uppercase;
 }
 
-.preview-block h3,
-.preview-block p {
+.scenario-card h3,
+.scenario-card p {
   margin: 0.3rem 0 0;
   font-size: 1rem;
   font-family: Inter, "Segoe UI", sans-serif;
@@ -635,4 +682,5 @@ button:focus-visible {
   padding: 1.5rem;
   font-size: 1rem;
   font-family: Inter, "Segoe UI", sans-serif;
+  text-align: center;
 }

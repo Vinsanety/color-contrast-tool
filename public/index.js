@@ -10,7 +10,7 @@ const elements = {
   fgError: document.getElementById("fgError"),
   bgError: document.getElementById("bgError"),
   ratio: document.getElementById("color-ratio"),
-  preview: document.getElementById("demo-box"),
+  preview: document.getElementById("scenarioWall"),
   recommendations: document.getElementById("recommendations"),
   saveStatus: document.getElementById("saveStatus"),
   savedPairsList: document.getElementById("savedPairsList"),
