@@ -45,7 +45,8 @@ function applyTheme(theme) {
 }
 
 function toggleTheme() {
-  const current = document.documentElement.getAttribute("data-theme") || "light";
+  const current =
+    document.documentElement.getAttribute("data-theme") || "light";
   applyTheme(current === "dark" ? "light" : "dark");
 }
 
@@ -73,7 +74,7 @@ function parseColor(raw) {
 
   if (
     (match = input.match(
-      /^rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})(?:\s*,\s*(0|0?\.\d+|1(?:\.0+)?)\s*)?\)$/i
+      /^rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})(?:\s*,\s*(0|0?\.\d+|1(?:\.0+)?)\s*)?\)$/i,
     ))
   ) {
     const rgb = [Number(match[1]), Number(match[2]), Number(match[3])];
@@ -115,6 +116,7 @@ function setErrorState(input, errorElement, errorMessage) {
 }
 
 function setPill(pill, passing) {
+  if (!pill) return;
   pill.classList.remove("pass", "fail");
   pill.classList.add(passing ? "pass" : "fail");
   pill.textContent = passing ? "Pass" : "Fail";
@@ -122,15 +124,17 @@ function setPill(pill, passing) {
 
 function clearPills() {
   Object.values(elements.statuses).forEach((pill) => {
+    if (!pill) return;
     pill.classList.remove("pass", "fail");
     pill.textContent = "--";
   });
 }
 
-function renderRecommendations(items) {
+function renderRecommendations(items, currentBackgroundHex) {
   elements.recommendations.innerHTML = "";
   if (!items.length) {
     const item = document.createElement("li");
+    item.className = "recommendation-empty";
     item.textContent = "Current pair already passes AA normal text.";
     elements.recommendations.appendChild(item);
     return;
@@ -138,7 +142,28 @@ function renderRecommendations(items) {
 
   items.forEach((suggestion) => {
     const item = document.createElement("li");
-    item.textContent = `${suggestion.hex}  (${suggestion.ratio.toFixed(2)}:1)`;
+    item.className = "recommendation-item";
+    item.innerHTML = `
+      <span class="rec-role">FG</span>
+      <span class="rec-color">
+        <span class="rec-swatch" style="background:${suggestion.hex};"></span>
+        <code>${suggestion.hex}</code>
+      </span>
+      <span class="rec-role">BG</span>
+      <span class="rec-color">
+        <span class="rec-swatch" style="background:${currentBackgroundHex};"></span>
+        <code>${currentBackgroundHex}</code>
+      </span>
+      <span class="rec-ratio">${suggestion.ratio.toFixed(2)}:1</span>
+      <button type="button" class="button button-small rec-apply-btn">Apply</button>
+    `;
+    item.querySelector(".rec-apply-btn").addEventListener("click", () => {
+      elements.fgTextInput.value = suggestion.hex;
+      elements.bgTextInput.value = currentBackgroundHex;
+      elements.fgColorInput.value = suggestion.hex;
+      elements.bgColorInput.value = currentBackgroundHex;
+      updateTool();
+    });
     elements.recommendations.appendChild(item);
   });
 }
@@ -149,7 +174,8 @@ function suggestForegroundAlternatives(bgRgb, minRatio) {
 
   for (let value = 0; value <= 255; value += 5) {
     const candidate = [value, value, value];
-    const ratio = (Math.max(luminance(...candidate), bgLum) + 0.05) /
+    const ratio =
+      (Math.max(luminance(...candidate), bgLum) + 0.05) /
       (Math.min(luminance(...candidate), bgLum) + 0.05);
 
     if (ratio >= minRatio) {
@@ -157,9 +183,7 @@ function suggestForegroundAlternatives(bgRgb, minRatio) {
     }
   }
 
-  return suggestions
-    .sort((a, b) => a.ratio - b.ratio)
-    .slice(0, 4);
+  return suggestions.sort((a, b) => a.ratio - b.ratio).slice(0, 4);
 }
 
 function getCurrentState() {
@@ -188,7 +212,7 @@ function updateTool() {
   if (fgError || bgError) {
     elements.ratio.textContent = "--";
     clearPills();
-    renderRecommendations([]);
+    renderRecommendations([], "--");
     return;
   }
 
@@ -207,9 +231,12 @@ function updateTool() {
   setPill(elements.statuses.aaaComponent, ratio >= 3);
 
   if (ratio >= 4.5) {
-    renderRecommendations([]);
+    renderRecommendations([], rgbToHex(bgRgb));
   } else {
-    renderRecommendations(suggestForegroundAlternatives(bgRgb, 4.5));
+    renderRecommendations(
+      suggestForegroundAlternatives(bgRgb, 4.5),
+      rgbToHex(bgRgb),
+    );
   }
 }
 
@@ -283,7 +310,13 @@ function saveCurrentPair() {
   const bg = rgbToHex(bgRgb);
   const ratio = `${calculateRatio(fgRgb, bgRgb).toFixed(2)}:1`;
   const next = [{ fg, bg, ratio }, ...loadSavedPairs()]
-    .filter((item, index, array) => index === array.findIndex((match) => match.fg === item.fg && match.bg === item.bg))
+    .filter(
+      (item, index, array) =>
+        index ===
+        array.findIndex(
+          (match) => match.fg === item.fg && match.bg === item.bg,
+        ),
+    )
     .slice(0, MAX_SAVED);
 
   savePairs(next);
