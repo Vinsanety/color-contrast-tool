@@ -519,14 +519,14 @@ button:focus-visible {
 }
 
 .footer-container {
+  margin-top: 3.5rem;
   border-top: 3px solid var(--line);
   background: var(--surface);
 }
 
 .footer-container p {
   margin: 0;
-  padding: 0.7rem;
-  text-align: center;
-  font-size: 0.78rem;
+  padding: 1.5rem;
+  font-size: 1rem;
   font-family: Inter, "Segoe UI", sans-serif;
 }
